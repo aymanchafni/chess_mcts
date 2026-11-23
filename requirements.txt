@@ -1,0 +1,4 @@
+chess>=1.10
+matplotlib
+pytest
+zstandard  # optionnel : lire lichess_db_puzzle.csv.zst directement

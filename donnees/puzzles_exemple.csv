@@ -1,0 +1,5 @@
+PuzzleId,FEN,Moves,Rating,RatingDeviation,Popularity,NbPlays,Themes,GameUrl,OpeningTags
+ex001,6k1/1p3ppp/8/8/8/8/5PPP/R5K1 b - - 0 1,b7b6 a1a8,600,75,90,100,mate mateIn1 backRankMate oneMove,,
+ex002,4k3/8/8/3q4/8/8/3R4/4K3 b - - 0 1,e8f8 d2d5,700,75,90,100,crushing hangingPiece oneMove,,
+ex003,r5k1/1p3ppp/8/8/8/8/4RPPP/4R1K1 b - - 0 1,b7b6 e2e8 a8e8 e1e8,900,75,90,100,mate mateIn2 backRankMate short,,
+ex004,4k3/8/8/1N5q/8/8/8/4K3 b - - 0 1,h5d5 b5c7 e8e7 c7d5,1000,75,90,100,crushing fork short,,
