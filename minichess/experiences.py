@@ -26,6 +26,8 @@ METHODES = ["B2", "M1", "M2", "M3", "M4", "M5", "M1+M2+M3"]
 CONFIGS = {
     "complet": dict(ouvertures=30, budget=10_000, budgets=[2_000, 5_000, 10_000, 20_000],
                     methodes_budget=["B2", "M2", "M1+M2+M3"], pieges=200, puzzles_n=300),
+    "moyen": dict(ouvertures=10, budget=5_000, budgets=[1_000, 3_000, 10_000],
+                  methodes_budget=["B2", "M2", "M1+M2+M3"], pieges=100, puzzles_n=100),
     "rapide": dict(ouvertures=3, budget=2_000, budgets=[1_000, 3_000],
                    methodes_budget=["B2", "M2"], pieges=20, puzzles_n=20),
 }
@@ -273,6 +275,7 @@ def main():
     p.add_argument("--etape", default="tout",
                    choices=["tout", "principal", "budgets", "ablation", "pieges", "puzzles", "graphiques"])
     p.add_argument("--rapide", action="store_true", help="petite version pour vérifier que tout marche")
+    p.add_argument("--moyen", action="store_true", help="version intermédiaire (~45 min sur 2 cœurs)")
     p.add_argument("--processus", type=int, default=os.cpu_count() or 1)
     p.add_argument("--puzzles", help="chemin vers lichess_db_puzzle.csv(.zst)")
     p.add_argument("--dossier", default="resultats")
@@ -280,7 +283,7 @@ def main():
 
     global DOSSIER
     DOSSIER = a.dossier
-    cfg = CONFIGS["rapide" if a.rapide else "complet"]
+    cfg = CONFIGS["rapide" if a.rapide else "moyen" if a.moyen else "complet"]
     etapes = ["principal", "budgets", "ablation", "pieges", "puzzles", "graphiques"] \
         if a.etape == "tout" else [a.etape]
     for e in etapes:

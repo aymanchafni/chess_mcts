@@ -91,7 +91,9 @@ class JoueurUCT(Joueur):
         self.debut, self.budget = Jeu.compteur, budget
         racine = Noeud(jeu)
         self.iterations = 0
-        while Jeu.compteur - self.debut < budget:
+        # `iterations < budget` : garde-fou quand l'arbre entier ne mène qu'à des fins de partie
+        # (ex. tous les coups atteignent la limite de demi-coups) et qu'une itération ne coûte rien.
+        while Jeu.compteur - self.debut < budget and self.iterations < budget:
             if self.solver and racine.preuve is not None:
                 break                      # position résolue : inutile de continuer
             try:

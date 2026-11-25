@@ -75,3 +75,13 @@ def test_fonctionne_sur_echecs_complets():
     jeu = JeuEchecs()
     j = creer_joueur("M1+M2+M3")
     assert j.choisir_coup(jeu, 500) in jeu.coups_legaux()
+
+
+@pytest.mark.parametrize("preset", [p for p in PRESETS if p != "B1"])
+def test_termine_quand_tous_les_coups_finissent_la_partie(preset):
+    # Au 199e demi-coup, tout coup atteint la limite de 200 : chaque enfant est terminal,
+    # donc une itération ne consomme aucun budget. MCTS doit quand même s'arrêter.
+    base = JeuGardner.depuis_texte(["k...r", ".....", ".....", ".....", "R...K"])
+    jeu = JeuGardner(base.plateau, 1, demi_coups=JeuGardner.LIMITE_DEMI_COUPS - 1)
+    coup = creer_joueur(preset).choisir_coup(jeu, 5000)
+    assert coup in jeu.coups_legaux()

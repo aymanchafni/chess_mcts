@@ -30,6 +30,8 @@ PRESETS = {
     "M4": "uct:minimax=1",
     "M5": "uct:biais=1.0",
     "M1+M2+M3": "uct:politique=captures,eps=0.8,coupure=4,solver=1",
+    # Méthode proposée : aucune simulation (feuille évaluée directement), exploration réduite.
+    "M6": "uct:c=0.5,politique=captures,coupure=0,solver=1",
 }
 
 
